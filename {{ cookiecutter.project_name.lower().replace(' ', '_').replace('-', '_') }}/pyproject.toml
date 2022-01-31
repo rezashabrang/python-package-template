@@ -149,6 +149,6 @@ source = "{{ cookiecutter.project_name }}"
 [coverage.run]
 branch = true
 
-[coverage.report]
-fail_under = 50
+[tool.coverage.report]
+fail_under = 85
 show_missing = true
