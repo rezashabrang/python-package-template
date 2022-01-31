@@ -53,6 +53,11 @@ check-codestyle:
 	poetry run black --diff --check --config pyproject.toml ./
 	poetry run darglint --verbosity 2 {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 
+.PHONY: change-codestyle
+change-codestyle:
+	poetry run isort --settings-path pyproject.toml ./
+	poetry run black --config pyproject.toml ./
+
 .PHONY: mypy
 mypy:
 	poetry run mypy --config-file pyproject.toml ./
@@ -62,7 +67,7 @@ check-safety:
 	poetry check
 	poetry run safety check --full-report
 	poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
-
+	
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
 
