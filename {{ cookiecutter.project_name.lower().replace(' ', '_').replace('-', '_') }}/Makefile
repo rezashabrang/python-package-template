@@ -41,7 +41,6 @@ formatting: codestyle
 .PHONY: test
 test:
 	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov={{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests/
-	poetry run coverage-badge -o assets/images/coverage.svg -f
 
 .PHONY: coverage
 coverage:
@@ -120,3 +119,14 @@ build-remove:
 
 .PHONY: cleanup
 cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove
+
+# badges
+.PHONY: extrabadges
+extrabadges:
+	$(SHELL) -c 'chmod u+x+r+w .shell/*.sh'
+	$(SHELL) -c 'chmod u+x+r+w .shell/badges.sh; . .shell/badges.sh'
+
+.PHONY: cov-badge
+cov-badge:
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov={{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests/
+	poetry run coverage-badge -o assets/images/coverage.svg -f

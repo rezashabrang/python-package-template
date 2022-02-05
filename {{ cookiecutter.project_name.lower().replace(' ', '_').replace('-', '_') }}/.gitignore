@@ -619,3 +619,5 @@ MigrationBackup/
 # Project scope ignores
 .env
 sandbox/
+.logs
+
