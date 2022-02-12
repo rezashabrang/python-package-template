@@ -74,5 +74,5 @@ repos:
       - id: pylint
         exclude: ^build/
         types: [ python ]
-        args: ["--rcfile=.pylintrc"]
+        args: ["--rcfile=pyproject.toml"]
 

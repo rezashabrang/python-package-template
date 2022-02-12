@@ -130,3 +130,20 @@ extrabadges:
 cov-badge:
 	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov={{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f
+
+
+.PHONY: complexity
+complexity:
+	poetry run radon cc {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} --total-average
+
+.PHONY: interrogate
+interrogate:
+	poetry run interrogate -v {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}
+
+.PHONY: maintainability
+maintainability:
+	poetry run radon mi {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}
+
+.PHONY: precommit
+precommit:
+	pre-commit run --all-files
