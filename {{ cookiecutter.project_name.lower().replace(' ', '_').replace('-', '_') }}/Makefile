@@ -68,7 +68,7 @@ check-safety:
 	poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 	
 .PHONY: lint
-lint: test check-codestyle mypy check-safety
+lint: check-codestyle mypy
 
 .PHONY: update-dev-deps
 update-dev-deps:
