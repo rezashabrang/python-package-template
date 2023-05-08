@@ -64,8 +64,10 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report
+	poetry export --only=main -o req-main.txt
+	poetry run safety check --full-report --file req-main.txt
 	poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
+	rm -f req-main.txt
 	
 .PHONY: lint
 lint: check-codestyle mypy
