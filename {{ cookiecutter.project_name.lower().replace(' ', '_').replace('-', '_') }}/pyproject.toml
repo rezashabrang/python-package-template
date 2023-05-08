@@ -46,7 +46,7 @@ python = "^{{ cookiecutter.minimal_python_version }}"
 typer = {extras = ["all"], version = "^0.4.0"}
 rich = "^10.14.0"
 {% endif %}
-[tool.poetry.group.dev]
+[tool.poetry.group.dev.dependencies]
 bandit = "^1.7.5"
 black = "^23.3.0"
 darglint = "^1.8.1"
@@ -54,7 +54,7 @@ isort = {extras = ["colors"], version = "^5.12.0"}
 mypy = "^1.2.0"
 mypy-extensions = "^1.0.0"
 pre-commit = "^3.3.1"
-pydocstyle = "^6.3.1"
+pydocstyle = "^6.3.0"
 pylint = "^2.17.4"
 pytest = "^7.3.1"
 pyupgrade = "^3.4.0"
